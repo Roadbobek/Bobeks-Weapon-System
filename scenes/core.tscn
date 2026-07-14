@@ -1,9 +1,172 @@
 [gd_scene format=3 uid="uid://dmup1t86g03t8"]
 
-[ext_resource type="Script" uid="uid://bs33dg62dm22q" path="res://scripts/player_something.gd" id="1_5634n"]
+[ext_resource type="Script" uid="uid://bs33dg62dm22q" path="res://scripts/player.gd" id="1_5634n"]
+[ext_resource type="PackedScene" uid="uid://bncpkfn2nrdsr" path="res://scenes/debug_pistol.tscn" id="2_c8oal"]
 [ext_resource type="PackedScene" uid="uid://bjcf2c8pur18x" path="res://scenes/debug_level.tscn" id="2_hlf4f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[sub_resource type="Animation" id="Animation_c8oal"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JointShoulderRight:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JointShoulderLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight/DebugPistol:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, -1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight/DebugPistol:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.056375504, -0.036387444)]
+}
+
+[sub_resource type="Animation" id="Animation_gmp2s"]
+resource_name = "debug_pistol_equip"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JointShoulderRight:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.50000346, 0.50000346),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5707964, 0.34906584, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JointShoulderLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.041666668, 0.3),
+"transitions": PackedFloat32Array(0.50000346, 0.50000346),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5707964, 0, 0.34906584)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight/DebugPistol:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(0.50000346, 0.50000346),
+"update": 0,
+"values": [Vector3(0, 1.5707964, -1.5707964), Vector3(-0.34906584, 1.5707964, -1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight/DebugPistol:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(0.50000346, 0.50000346),
+"update": 0,
+"values": [Vector3(0, 0.056375504, -0.036387444), Vector3(-0.025498629, 0.047094762, -0.036387444)]
+}
+
+[sub_resource type="Animation" id="Animation_qapo8"]
+resource_name = "debug_pistol_hold"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JointShoulderRight:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.50000346),
+"update": 0,
+"values": [Vector3(1.5707964, 0.34906584, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JointShoulderLeft:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.50000346),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0.34906584)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight/DebugPistol:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.50000346),
+"update": 0,
+"values": [Vector3(-0.34906584, 1.5707964, -1.5707964)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight/DebugPistol:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.50000346),
+"update": 0,
+"values": [Vector3(-0.025498629, 0.047094762, -0.036387444)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qapo8"]
+_data = {
+&"RESET": SubResource("Animation_c8oal"),
+&"debug_pistol_equip": SubResource("Animation_gmp2s"),
+&"debug_pistol_hold": SubResource("Animation_qapo8")
+}
 
 [node name="Core" type="Node" unique_id=2026094452]
 
@@ -13,11 +176,54 @@ script = ExtResource("1_5634n")
 
 [node name="Collision" type="CollisionShape3D" parent="Player" unique_id=1769675244]
 shape = SubResource("CapsuleShape3D_g4v7s")
+debug_color = Color(0, 0, 0, 0.41960785)
 
 [node name="JointHead" type="Node3D" parent="Player" unique_id=1029669778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Player/JointHead" unique_id=1939190424]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="WeaponManager" type="Node3D" parent="Player/JointHead" unique_id=888923669]
+
+[node name="WeaponAnimationPlayer" type="AnimationPlayer" parent="Player/JointHead/WeaponManager" unique_id=914751825]
+libraries/ = SubResource("AnimationLibrary_qapo8")
+
+[node name="JointShoulderRight" type="Node3D" parent="Player/JointHead/WeaponManager" unique_id=311437599]
+transform = Transform3D(0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999999, 0.35, -0.14999998, -0.13)
+
+[node name="UpperArmRight" type="CSGBox3D" parent="Player/JointHead/WeaponManager/JointShoulderRight" unique_id=1639388945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+size = Vector3(0.15, 0.5, 0.15)
+
+[node name="JointElbowRight" type="Node3D" parent="Player/JointHead/WeaponManager/JointShoulderRight/UpperArmRight" unique_id=1358629362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24982512, 0)
+
+[node name="ForearmRight" type="CSGBox3D" parent="Player/JointHead/WeaponManager/JointShoulderRight/UpperArmRight/JointElbowRight" unique_id=582035923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+size = Vector3(0.15, 0.5, 0.15)
+
+[node name="JointWristRight" type="Node3D" parent="Player/JointHead/WeaponManager/JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight" unique_id=188367998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="DebugPistol" parent="Player/JointHead/WeaponManager/JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight" unique_id=1875982161 instance=ExtResource("2_c8oal")]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0, 0.056375504, -0.036387444)
+
+[node name="JointShoulderLeft" type="Node3D" parent="Player/JointHead/WeaponManager" unique_id=710555159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.14999998, -0.13)
+
+[node name="UpperArmLeft" type="CSGBox3D" parent="Player/JointHead/WeaponManager/JointShoulderLeft" unique_id=1152378227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+size = Vector3(0.15, 0.5, 0.15)
+
+[node name="JointElbowLeft" type="Node3D" parent="Player/JointHead/WeaponManager/JointShoulderLeft/UpperArmLeft" unique_id=207895942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24982512, 0)
+
+[node name="ForearmLeft" type="CSGBox3D" parent="Player/JointHead/WeaponManager/JointShoulderLeft/UpperArmLeft/JointElbowLeft" unique_id=1243518694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+size = Vector3(0.15, 0.5, 0.15)
+
+[node name="JointWristLeft" type="Node3D" parent="Player/JointHead/WeaponManager/JointShoulderLeft/UpperArmLeft/JointElbowLeft/ForearmLeft" unique_id=1933591109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 
 [node name="LevelContainer" type="Node3D" parent="." unique_id=1355170988]
 
