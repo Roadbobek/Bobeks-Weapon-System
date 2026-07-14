@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bjcf2c8pur18x"]
+
+[ext_resource type="Texture2D" uid="uid://cm7bu815e28hi" path="res://icon.svg" id="1_6or15"]
+[ext_resource type="Environment" uid="uid://bhylygy4jp5lb" path="res://assets/environments/debug_environment.tres" id="2_6or15"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6or15"]
+albedo_texture = ExtResource("1_6or15")
+
+[node name="DebugLevel" type="Node3D" unique_id=1429866590]
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=891844179]
+material_override = SubResource("StandardMaterial3D_6or15")
+use_collision = true
+size = Vector3(100, 0.1, 100)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=810824361]
+environment = ExtResource("2_6or15")
