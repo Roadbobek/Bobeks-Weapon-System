@@ -23,7 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		# use InputEventMouseMotion.screen_relative instead of .relative to-
 		# avoid player looking appearing different depending on resolution
 		mouse_movement = event.screen_relative
-		print(mouse_movement)
+		#print(mouse_movement) # DEBUG
 	
 
 func _physics_process(delta: float) -> void:

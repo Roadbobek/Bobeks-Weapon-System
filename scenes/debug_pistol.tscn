@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bncpkfn2nrdsr"]
 
+[ext_resource type="Script" uid="uid://cwsfepybxuti0" path="res://scripts/gun.gd" id="1_5pogn"]
+
 [node name="DebugPistol" type="Node3D" unique_id=1875982161]
+script = ExtResource("1_5pogn")
 
 [node name="Grip" type="CSGBox3D" parent="." unique_id=593150875]
 transform = Transform3D(0.9732879, 0.22958806, 0, -0.22958806, 0.9732879, 0, 0, 0, 1, 0.0023856962, -0.0005627599, 0)

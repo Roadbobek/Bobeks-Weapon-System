@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://ccnbc3sawg8yk"]
+
+[ext_resource type="Script" uid="uid://cwsfepybxuti0" path="res://scripts/gun.gd" id="1_qkqps"]
+
+[node name="DebugAutoRifle" type="Node3D" unique_id=865040223]
+script = ExtResource("1_qkqps")
+
+[node name="Grip" type="CSGBox3D" parent="." unique_id=27930724]
+transform = Transform3D(0.9732879, 0.22958806, 0, -0.22958806, 0.9732879, 0, 0, 0, 1, 0.0023856962, -0.0005627599, 0)
+size = Vector3(0.044902343, 0.109375, 0.029541016)
+
+[node name="Upper" type="CSGBox3D" parent="." unique_id=1025657051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12349248, 0.07925995, -6.574392e-05)
+size = Vector3(0.32568514, 0.06492172, 0.04)
+
+[node name="Upper2" type="CSGBox3D" parent="." unique_id=1719753529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.372324, 0.08293468, -6.574392e-05)
+size = Vector3(0.177104, 0.044128418, 0.029052734)
+
+[node name="Magazine" type="CSGBox3D" parent="." unique_id=1898017277]
+transform = Transform3D(0.9690468, -0.2468773, 0, 0.2468773, 0.9690468, 0, 0, 0, 1, 0.16959797, 0.031197604, -6.574392e-05)
+size = Vector3(0.060302734, 0.07134995, 0.028320313)
+
+[node name="Magazine2" type="CSGBox3D" parent="Magazine" unique_id=1727843207]
+transform = Transform3D(0.9373747, -0.3483227, 0, 0.3483227, 0.9373747, 0, 0, 0, 1, 0.010925174, -0.059317347, 6.574392e-05)
+size = Vector3(0.060302734, 0.0729979, 0.028320313)
+
+[node name="Stock" type="CSGBox3D" parent="." unique_id=138418534]
+transform = Transform3D(0.99914473, -0.041349187, 0, 0.041349187, 0.99914473, 0, 0, 0, 1, -0.05329583, 0.07298447, -6.574392e-05)
+size = Vector3(0.040896975, 0.044010557, 0.03)
+
+[node name="Stock2" type="CSGBox3D" parent="." unique_id=332584949]
+transform = Transform3D(0.9995091, -0.03133057, 0, 0.03133057, 0.9995091, 0, 0, 0, 1, -0.12179884, 0.065395825, -6.574392e-05)
+size = Vector3(0.11407424, 0.064830475, 0.032226563)
+
+[node name="Trigger" type="CSGBox3D" parent="." unique_id=899182932]
+transform = Transform3D(0.9979079, 0.055394053, 0.033333566, -0.055596855, 0.9984399, 0.005187644, -0.032994196, -0.0070300424, 0.99943084, 0.059574008, 0.034571834, -0.00023662864)
+size = Vector3(0.06905266, 0.041016083, 0.01977539)
+
+[node name="Irons1" type="CSGBox3D" parent="." unique_id=65072828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2736881, 0.11816908, 0)
+size = Vector3(0.0072382838, 0.013041992, 0.005859375)
+
+[node name="Irons2" type="CSGBox3D" parent="." unique_id=944358902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031386808, 0.11816908, -0.006906184)
+size = Vector3(0.0072382838, 0.013041992, 0.005)
+
+[node name="Irons3" type="CSGBox3D" parent="." unique_id=390497307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.031036481, 0.11813394, 0.007)
+size = Vector3(0.0072382838, 0.013041992, 0.005)
