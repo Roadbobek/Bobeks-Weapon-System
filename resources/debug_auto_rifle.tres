@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GunData" format=3 uid="uid://nla4bfng4n0n"]
+
+[ext_resource type="Script" uid="uid://wchhxmj34438" path="res://resources/gun_data.gd" id="1_focxf"]
+
+[resource]
+script = ExtResource("1_focxf")
+name = "Debug Auto Rifle"
+node_on_player = "DebugAutoRifle"
+metadata/_custom_type_script = "uid://wchhxmj34438"

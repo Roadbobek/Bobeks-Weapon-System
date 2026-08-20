@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GunData" format=3 uid="uid://bqnjpca5f0opu"]
+
+[ext_resource type="Script" uid="uid://wchhxmj34438" path="res://resources/gun_data.gd" id="1_dglan"]
+
+[resource]
+script = ExtResource("1_dglan")
+name = "Debug Pistol"
+node_on_player = "DebugPistolw"
+metadata/_custom_type_script = "uid://wchhxmj34438"

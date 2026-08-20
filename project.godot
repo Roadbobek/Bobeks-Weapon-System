@@ -35,6 +35,7 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 folder_colors={
 "res://addons/": "gray",
 "res://assets/": "green",
+"res://resources/": "blue",
 "res://scenes/": "yellow",
 "res://scripts/": "red"
 }
