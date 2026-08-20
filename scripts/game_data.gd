@@ -11,11 +11,12 @@ var lookSensitivity = 1.0
 var aimSensitivity = 1.0
 var scopeSensitivity = 1.0
 
-var primary: String
-var secondary: String
-var tertiary: String
-var knife: String
+var primary: String # string for the weapons resource, for eg "DebugAutoRifle" for var DebugAutoRifle = preload("res://resources/debug_auto_rifle.tres")
+var secondary: String # same
+var tertiary: String # same
+var knife: String # same
 var equipedWeapon: String # primary, secondary, tertiary, knife, none=("")
+var equipingWeapon: bool
 var weaponState: String # hip, aim, reload
 var firemode = 1
 var isScoped = false
@@ -23,7 +24,6 @@ var weaponPosition = 1
 var inspectPosition = 1
 var jammed = false
 var flashlight = false
-
 
 var freeze = false
 var isGrounded = false
@@ -53,12 +53,12 @@ func Reset():
 	aimSensitivity = 1.0
 	scopeSensitivity = 1.0
 
-
 	primary = ""
 	secondary = ""
 	tertiary = ""
 	knife = ""
 	equipedWeapon = ""
+	equipingWeapon = false
 	weaponState = "" 
 	firemode = 1
 	isScoped = false
@@ -66,7 +66,6 @@ func Reset():
 	inspectPosition = 1
 	jammed = false
 	flashlight = false
-
 
 	freeze = false
 	isGrounded = false

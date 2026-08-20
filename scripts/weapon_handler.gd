@@ -9,28 +9,90 @@ var WeaponAnimationPlayer
 var DebugAutoRifleNode
 var DebugPistolNode
 
+var weapon_resource
+var weapon_node
+
 
 func _ready() -> void:
 	WeaponAnimationPlayer = $"WeaponAnimationPlayer"
 	DebugAutoRifleNode = get_node("JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight/" + DebugAutoRifle.node_on_player)
 	DebugPistolNode = get_node("JointShoulderRight/UpperArmRight/JointElbowRight/ForearmRight/JointWristRight/" + DebugPistol.node_on_player)
 	
-	GameData.primary = "debugAutoRifle"
-	GameData.tertiary = "debugPistol"
-	
-	
-func handle_weapon_change(desired_weapon):
-	pass
-	
-	
+	GameData.primary = "DebugAutoRifle"
+	GameData.secondary = ""
+	GameData.tertiary = "DebugPistol"
+	GameData.knife = ""
+
+
+func handle_weapon_change(switch_to_slot: String):
+	if switch_to_slot == GameData.equipedWeapon:
+		unequip_weapon()
+	else:
+		unequip_weapon()
+		equip_weapon(switch_to_slot)
+
+
+func equip_weapon(switch_to_slot: String):
+	GameData.equipedWeapon = switch_to_slot
+	weapon_resource = get(resolve_weapon_from_slot())
+	if weapon_resource:
+		weapon_node = get(weapon_resource.node_on_player + "Node")
+		
+		weapon_node.visible = true
+		WeaponAnimationPlayer.play(weapon_resource.animation_name_prefix + "_equip")
+		GameData.equipingWeapon = true
+		#await WeaponAnimationPlayer.animation_finished
+		
+
+func unequip_weapon():
+	GameData.equipedWeapon = ""
+	weapon_resource = null
+	weapon_node = null
+
+
+func resolve_weapon_from_slot():
+	var slot = GameData.equipedWeapon
+	if slot == "primary":
+		return GameData.primary
+	elif slot == "secondary":
+		return GameData.secondary
+	elif slot == "tertiary":
+		return GameData.tertiary
+	elif slot == "knife":
+		return GameData.knife
+
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and Input.is_action_just_pressed("inventory_primary"):
-		handle_weapon_change(GameData.primary)
-		DebugAutoRifleNode.visible = true
-		WeaponAnimationPlayer.play("debug_pistol_equip")
-		
+		handle_weapon_change("primary")
+
 	elif event is InputEventKey and Input.is_action_just_pressed("inventory_secondary"):
-		pass
+		handle_weapon_change("secondary")
+		
+	elif event is InputEventKey and Input.is_action_just_pressed("inventory_tertiary"):
+		handle_weapon_change("tertiary")
+
+
+func _process(delta: float) -> void:
+	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -92,7 +154,3 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			#equiped_weapon = "debug_auto_rifle"
 			#DebugAutoRifle.visible = true
 			#WeaponAnimationPlayer.play("debug_pistol_equip")
-
-
-func _process(delta: float) -> void:
-	pass

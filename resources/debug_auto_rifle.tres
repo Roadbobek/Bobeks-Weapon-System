@@ -6,4 +6,5 @@
 script = ExtResource("1_focxf")
 name = "Debug Auto Rifle"
 node_on_player = "DebugAutoRifle"
+animation_name_prefix = "debug_pistol"
 metadata/_custom_type_script = "uid://wchhxmj34438"

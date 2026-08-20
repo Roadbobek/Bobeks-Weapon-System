@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_dglan")
 name = "Debug Pistol"
-node_on_player = "DebugPistolw"
+node_on_player = "DebugPistol"
+animation_name_prefix = "debug_pistol"
 metadata/_custom_type_script = "uid://wchhxmj34438"
