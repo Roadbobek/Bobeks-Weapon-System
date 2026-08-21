@@ -26,6 +26,7 @@ func _ready() -> void:
 	
 	action_id = 0
 
+
 func handle_weapon_change(switch_to_slot: String):
 	# on same slot, unequip
 	if switch_to_slot == GameData.equipedWeapon:
@@ -47,7 +48,6 @@ func equip_weapon(switch_to_slot: String):
 		var weapon_node = get(weapon_resource.node_on_player + "Node")
 		weapon_node.visible = true
 		WeaponAnimationPlayer.play(weapon_resource.animation_name_prefix + "_equip")
-		#await WeaponAnimationPlayer.animation_finished
 
 
 func unequip_weapon_or_switch(switch_to_slot: String = ""):
@@ -57,18 +57,17 @@ func unequip_weapon_or_switch(switch_to_slot: String = ""):
 		if weapon_resource:
 			GameData.weaponBusy = true
 			var weapon_node = get(weapon_resource.node_on_player + "Node")
-			WeaponAnimationPlayer.play_backwards(weapon_resource.animation_name_prefix + "_equip")
 			var action_id_snapshot = action_id
-			await WeaponAnimationPlayer.animation_finished
-			if action_id_snapshot != action_id:
-				return
-			GameData.equipedWeapon = ""
-			weapon_node.visible = false
-			GameData.weaponBusy = false
-			weapon_resource = null
-			weapon_node = null
-			if switch_to_slot:
-				equip_weapon(switch_to_slot)
+			var on_finished = func(_anim_name: String):
+				if action_id_snapshot != action_id:
+					return
+				GameData.equipedWeapon = ""
+				weapon_node.visible = false
+				GameData.weaponBusy = false
+				if switch_to_slot:
+					equip_weapon(switch_to_slot)
+			WeaponAnimationPlayer.animation_finished.connect(on_finished, CONNECT_ONE_SHOT)
+			WeaponAnimationPlayer.play_backwards(weapon_resource.animation_name_prefix + "_equip")
 
 
 func switch_weapon(switch_to_slot: String = ""):
