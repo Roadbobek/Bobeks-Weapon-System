@@ -9,8 +9,7 @@ var WeaponAnimationPlayer
 var DebugAutoRifleNode
 var DebugPistolNode
 
-var weapon_resource
-var weapon_node
+var action_id
 
 
 func _ready() -> void:
@@ -22,45 +21,58 @@ func _ready() -> void:
 	GameData.secondary = ""
 	GameData.tertiary = "DebugPistol"
 	GameData.knife = ""
+	GameData.equipedWeapon = ""
 	GameData.weaponBusy = false
-
+	
+	action_id = 0
 
 func handle_weapon_change(switch_to_slot: String):
-	if not GameData.weaponBusy: # implement event queue ?
-		if switch_to_slot == GameData.equipedWeapon:
-			unequip_weapon_or_switch()
-		elif GameData.equipedWeapon:
-			unequip_weapon_or_switch(switch_to_slot)
-		else:
-			equip_weapon(switch_to_slot)
+	# on same slot, unequip
+	if switch_to_slot == GameData.equipedWeapon:
+		unequip_weapon_or_switch()
+	# on seperate slot and gun equiped, switch
+	elif GameData.equipedWeapon:
+		unequip_weapon_or_switch(switch_to_slot)
+	# on seperate slot and no gun equiped, equip
+	else:
+		equip_weapon(switch_to_slot)
 
 
 func equip_weapon(switch_to_slot: String):
+	action_id += 1
 	GameData.equipedWeapon = switch_to_slot
-	weapon_resource = get(resolve_weapon_from_slot())
+	var weapon_resource = get(resolve_weapon_from_slot())
 	if weapon_resource:
 		GameData.weaponBusy = true
-		weapon_node = get(weapon_resource.node_on_player + "Node")
+		var weapon_node = get(weapon_resource.node_on_player + "Node")
 		weapon_node.visible = true
 		WeaponAnimationPlayer.play(weapon_resource.animation_name_prefix + "_equip")
 		#await WeaponAnimationPlayer.animation_finished
 
 
 func unequip_weapon_or_switch(switch_to_slot: String = ""):
+	action_id += 1
 	if GameData.equipedWeapon:
-		weapon_resource = get(resolve_weapon_from_slot())
+		var weapon_resource = get(resolve_weapon_from_slot())
 		if weapon_resource:
 			GameData.weaponBusy = true
-			weapon_node = get(weapon_resource.node_on_player + "Node")
+			var weapon_node = get(weapon_resource.node_on_player + "Node")
 			WeaponAnimationPlayer.play_backwards(weapon_resource.animation_name_prefix + "_equip")
+			var action_id_snapshot = action_id
 			await WeaponAnimationPlayer.animation_finished
+			if action_id_snapshot != action_id:
+				return
+			GameData.equipedWeapon = ""
 			weapon_node.visible = false
 			GameData.weaponBusy = false
-			GameData.equipedWeapon = ""
 			weapon_resource = null
 			weapon_node = null
 			if switch_to_slot:
 				equip_weapon(switch_to_slot)
+
+
+func switch_weapon(switch_to_slot: String = ""):
+	pass
 
 
 func resolve_weapon_from_slot():
@@ -90,10 +102,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	if GameData.weaponBusy and not WeaponAnimationPlayer.is_playing():
-		GameData.weaponBusy = false
-		# enable firing logic here
-	
 	if GameData.weaponBusy and not WeaponAnimationPlayer.is_playing():
 		GameData.weaponBusy = false
 
