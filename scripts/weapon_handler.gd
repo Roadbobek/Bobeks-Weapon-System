@@ -22,32 +22,45 @@ func _ready() -> void:
 	GameData.secondary = ""
 	GameData.tertiary = "DebugPistol"
 	GameData.knife = ""
+	GameData.weaponBusy = false
 
 
 func handle_weapon_change(switch_to_slot: String):
-	if switch_to_slot == GameData.equipedWeapon:
-		unequip_weapon()
-	else:
-		unequip_weapon()
-		equip_weapon(switch_to_slot)
+	if not GameData.weaponBusy: # implement event queue ?
+		if switch_to_slot == GameData.equipedWeapon:
+			unequip_weapon_or_switch()
+		elif GameData.equipedWeapon:
+			unequip_weapon_or_switch(switch_to_slot)
+		else:
+			equip_weapon(switch_to_slot)
 
 
 func equip_weapon(switch_to_slot: String):
 	GameData.equipedWeapon = switch_to_slot
 	weapon_resource = get(resolve_weapon_from_slot())
 	if weapon_resource:
+		GameData.weaponBusy = true
 		weapon_node = get(weapon_resource.node_on_player + "Node")
-		
 		weapon_node.visible = true
 		WeaponAnimationPlayer.play(weapon_resource.animation_name_prefix + "_equip")
-		GameData.equipingWeapon = true
 		#await WeaponAnimationPlayer.animation_finished
-		
 
-func unequip_weapon():
-	GameData.equipedWeapon = ""
-	weapon_resource = null
-	weapon_node = null
+
+func unequip_weapon_or_switch(switch_to_slot: String = ""):
+	if GameData.equipedWeapon:
+		weapon_resource = get(resolve_weapon_from_slot())
+		if weapon_resource:
+			GameData.weaponBusy = true
+			weapon_node = get(weapon_resource.node_on_player + "Node")
+			WeaponAnimationPlayer.play_backwards(weapon_resource.animation_name_prefix + "_equip")
+			await WeaponAnimationPlayer.animation_finished
+			weapon_node.visible = false
+			GameData.weaponBusy = false
+			GameData.equipedWeapon = ""
+			weapon_resource = null
+			weapon_node = null
+			if switch_to_slot:
+				equip_weapon(switch_to_slot)
 
 
 func resolve_weapon_from_slot():
@@ -62,6 +75,9 @@ func resolve_weapon_from_slot():
 		return GameData.knife
 
 
+#func resolve_node_from_weapon():
+	
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and Input.is_action_just_pressed("inventory_primary"):
 		handle_weapon_change("primary")
@@ -74,8 +90,12 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	pass
-
+	if GameData.weaponBusy and not WeaponAnimationPlayer.is_playing():
+		GameData.weaponBusy = false
+		# enable firing logic here
+	
+	if GameData.weaponBusy and not WeaponAnimationPlayer.is_playing():
+		GameData.weaponBusy = false
 
 
 

@@ -16,7 +16,7 @@ var secondary: String # same
 var tertiary: String # same
 var knife: String # same
 var equipedWeapon: String # primary, secondary, tertiary, knife, none=("")
-var equipingWeapon: bool
+var weaponBusy: bool
 var weaponState: String # hip, aim, reload
 var firemode = 1
 var isScoped = false
@@ -58,7 +58,7 @@ func Reset():
 	tertiary = ""
 	knife = ""
 	equipedWeapon = ""
-	equipingWeapon = false
+	weaponBusy = false
 	weaponState = "" 
 	firemode = 1
 	isScoped = false
